@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>ASCII ART WEB</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">    
+    </head>
+    <body>
+        <h1>ASCII ART WEB</h1>
+        <form action="/">
+            <p><input class="button" name="text" placeholder="Введите текст">
+            <p><input class="button" type="submit" value="Отправить"></p>
+            <select size="1" name="style" id="">
+                <option {{ if eq .Fs "standard" }} selected {{end}} value="standard">Standard</option>
+                <option {{ if eq .Fs "thinkertoy" }} selected {{end}} value="thinkertoy">Thinkertoy</option>
+                <option {{ if eq .Fs "shadow" }} selected {{end}} value="shadow">Shadow</option>
+            </select>
+           </form>
+          <pre>{{ .Output }}</pre>
+    </body>
+</html>
