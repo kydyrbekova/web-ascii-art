@@ -1,20 +1,47 @@
 <html>
-    <head>
-        <title>ASCII ART WEB</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css"> 
-
-    </head>
-    <body>
-        <h1>ASCII ART WEB</h1>
-        <form action="/">
-            <p><input class="text" name="text" placeholder="Введите текст">
-            <p><input class="button" type="submit" value="Отправить"></p>
-            <select size="1" name="style" id="">
-                <option {{ if eq .Fs "standard" }} selected {{end}} value="standard">Standard</option>
-                <option {{ if eq .Fs "thinkertoy" }} selected {{end}} value="thinkertoy">Thinkertoy</option>
-                <option {{ if eq .Fs "shadow" }} selected {{end}} value="shadow">Shadow</option>
-            </select>
-           </form>
-          <pre>{{ .Output }}</pre>
-    </body>
+  <head>
+    <title>ASCII ART WEB</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet"> 
+  </head>
+  
+  <body>
+      <form action ="/">
+        <body id="bodyp">
+          <header>
+              <h1>ASCII ART WEB</h1>
+          </header>
+          <section id="form">
+              <form name="asciiartweb" action="/" method="post">
+                  <table>
+                      <tr>
+                          <td>Text</td>
+                          <td><input type="text" name="text" value="type something"></td>
+                      </tr>
+                      <tr>
+                          <td>Fonts</td>
+                          <td>
+                              <select name="fonts" id="fonts">
+                                  <option value="standard">Standard</option>
+                                  <option value="shadow">Shadow</option>
+                                  <option value="thinkertoy">Thinkertoy</option>
+                              </select>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td></td>
+                          <td id="submit" colspan="6">
+                              <input type="submit" value="Submit" id="submit">
+                          </td>
+                      </tr>
+                  </table>
+              </form>
+          </section>
+          <section id="result">                  
+              <pre id="res"><br> {{ .}}</pre>
+          </section>
+          <footer>
+              <p><br><br><br> ZhaxylykovOlzhasBatyluly | timurnurgali | alanapapa</p>
+          </footer>
+  </body>  
 </html>
