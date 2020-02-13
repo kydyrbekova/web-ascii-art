@@ -1,0 +1,28 @@
+ body {
+  background-color:#333;
+ }
+ .button{
+    color: black;
+    position: relative;
+    left: 40%;
+    top: 500px;
+    
+ }
+ h1 {
+    position: relative; 
+    color : rgb(146, 230, 13);
+    left: 40%;
+    top: 500px;
+ }
+ pre {
+   text-align: center;
+   color: lightblue;
+
+  
+ }
+ select {
+   color: black;
+   position: relative; 
+   left: 56%;
+   top: 410px;
+ }
