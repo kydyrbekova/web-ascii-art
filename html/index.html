@@ -30,7 +30,8 @@
         }
 
         input,
-         select {
+         select,
+         button {
              width: 200px;
              font-size: 13px;
              padding: 6px 0 4px 10px;
@@ -87,11 +88,17 @@
                 <td colspan="2"> <input type="submit" id="submit"> </td>
                 <td></td>
             </tr>
+            <tr>
+                <td colspan="2"> <button type="button" id="button">Download</button> </td>
+                <td></td>
+            </tr>
+            
         </table>
     </form>
     <br>
+    <br>
     <section id="result">
-        <pre id="result"> <br> {{  .}} </pre>
+        <pre id="result">{{.}} </pre>
     </section>                     
 
 </body>    
