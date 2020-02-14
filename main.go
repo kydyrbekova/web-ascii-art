@@ -14,6 +14,7 @@ var text, fonts, Result string
 
 func main() {
 	http.HandleFunc("/", handlefunc)
+	//http.HandleFunc("/download", handleDownload)
 	fmt.Println("Listening to port :8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
@@ -31,6 +32,7 @@ func handlefunc(w http.ResponseWriter, request *http.Request) {
 	case "GET":
 		http.ServeFile(w, request, "html")
 	case "POST":
+
 		fonts := request.FormValue("fonts")
 		text := request.FormValue("text")
 
@@ -78,4 +80,8 @@ func ScanFile(font *os.File) []string {
 		fileContent = append(fileContent, lines)
 	}
 	return fileContent
+}
+
+func handleDownload() {
+
 }

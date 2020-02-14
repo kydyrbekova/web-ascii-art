@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+
     <title>Ascii Art Web</title>
     <style>
         html {
@@ -78,9 +80,9 @@
                         <option value="thinkertoy">Thinkertoy</option>
                     </select>
                 </td>
-            </tr>
+            </tr><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <tr>
-                <td colspan="2"> <textarea type="text" name="text" value="Add your text" class="input"></textarea> </td>
+                <td colspan="2"> <textarea type="text" name="text" value="Add your text" class="input" id="textarea_id"></textarea> </td>
                 <td></td>
             </tr> 
             
@@ -89,16 +91,47 @@
                 <td></td>
             </tr>
             <tr>
-                <td colspan="2"> <button type="button" id="button">Download</button> </td>
+                <td colspan="2"> 
+                    <input type="button" id="dwn-btn" value="Download"/>
+                </td>
                 <td></td>
             </tr>
             
         </table>
+       
     </form>
     <br>
     <br>
     <section id="result">
         <pre id="result">{{.}} </pre>
-    </section>                     
+    </section>    
+    
+    
+    <script>
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // Start file download.
+        document.getElementById("dwn-btn").addEventListener("click", function(){
+            
+            var text = document.getElementsByTagName('pre')[0].innerHTML;
+            var filename = "donwload.txt";
+            text = text.replace(/&lt;/g, "<");
+            text = text.replace(/&gt;/g, ">");
+            
+            download(filename, text);
+        }, false);
+
+    </script>
 
 </body>    
