@@ -8,7 +8,8 @@
     
 
     <title>Ascii Art Web</title>
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet"/> 
+    <link type="text/css" real="stylesheet" href="./html/style.css" />
 </head>
 
 <body id="body">
@@ -18,7 +19,7 @@
     <form id="form" name="asciiweb" action="/" method="POST">
         <table align="center">
             <tr>
-                <td>Choose your font</td> 
+                <td>Choose your font:</td> 
                 <td>
                     <select name="fonts" id="fonts" class="select">
                         <option value="standard">Standard</option> 
@@ -26,14 +27,14 @@
                         <option value="thinkertoy">Thinkertoy</option>
                     </select>
                 </td>
-            </tr><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            </tr>
             <tr>
                 <td colspan="2"> <textarea type="text" name="text" value="Add your text" class="input" id="textarea_id"></textarea> </td>
                 <td></td>
             </tr> 
             
             <tr>
-                <td colspan="2"> <input type="submit" id="submit"> </td>
+                <td colspan="2"> <input type="submit" id="submit" name="Submit"> </td>
                 <td></td>
             </tr>
             <tr>
@@ -52,18 +53,15 @@
         <pre id="result">{{.}} </pre>
     </section>    
     
-    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script>
         function download(filename, text) {
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
             element.setAttribute('download', filename);
-
             element.style.display = 'none';
             document.body.appendChild(element);
-
             element.click();
-
             document.body.removeChild(element);
         }
 

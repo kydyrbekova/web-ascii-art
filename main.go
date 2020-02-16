@@ -13,8 +13,9 @@ import (
 var text, fonts, Result string
 
 func main() {
+	fs := http.FileServer(http.Dir("html"))
+	http.Handle("/html/", http.StripPrefix("/html/", fs))
 	http.HandleFunc("/", handlefunc)
-	//http.HandleFunc("/download", handleDownload)
 	fmt.Println("Listening to port :8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
@@ -23,6 +24,7 @@ func main() {
 }
 
 func handlefunc(w http.ResponseWriter, request *http.Request) {
+
 	if request.URL.Path != "/" {
 		http.Error(w, "Error 404\n Page not Found", http.StatusNotFound)
 		return
@@ -82,6 +84,6 @@ func ScanFile(font *os.File) []string {
 	return fileContent
 }
 
-func handleDownload() {
+// func handleDownload() {
 
-}
+// }
