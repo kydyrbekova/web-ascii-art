@@ -32,7 +32,13 @@ func handlefunc(w http.ResponseWriter, request *http.Request) {
 
 	switch request.Method {
 	case "GET":
-		http.ServeFile(w, request, "html")
+		// http.ServeFile(w, request, "html")
+		temp, err := template.ParseFiles("html/index.html")
+		if err != nil {
+			http.Error(w, "Internal Server error - 500", http.StatusNotFound)
+			return
+		}
+		temp.Execute(w, nil)
 	case "POST":
 
 		fonts := request.FormValue("fonts")
@@ -61,18 +67,21 @@ func handlefunc(w http.ResponseWriter, request *http.Request) {
 			return
 		}
 
-
-
 		fileContent := ScanFile(file)
-		arg := strings.Split(text+" ", "\\n")
+		arg := strings.Split(text+" ", "\n")
 
 		for _, val := range arg {
 			asciiResult(string(val), fileContent)
 		}
 
-		temp, _ := template.ParseFiles("html/index.html")
+		temp, err := template.ParseFiles("html/index.html")
+		if err != nil {
+			http.Error(w, "Internal Server error - 500", http.StatusNotFound)
+			return
+		}
 		temp.Execute(w, Result)
 	}
+
 }
 
 func asciiResult(s string, fileContent []string) string {
@@ -84,6 +93,7 @@ func asciiResult(s string, fileContent []string) string {
 		Result = Result + "\n"
 	}
 	return Result
+
 }
 
 func ScanFile(font *os.File) []string {
