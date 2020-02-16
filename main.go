@@ -38,9 +38,19 @@ func handlefunc(w http.ResponseWriter, request *http.Request) {
 		fonts := request.FormValue("fonts")
 		text := request.FormValue("text")
 
+		arr := []byte(text)
+		var newArr []byte
+		for _, ch := range arr {
+			if ch != 13 {
+				newArr = append(newArr, ch)
+			}
+		}
+
+		text = string(newArr)
+
 		for _, e := range text {
-			if e < 32 || e > 126 {
-				http.Error(w, "Error 400\n Bad Request", http.StatusNotFound)
+			if (e < 32 || e > 126) && e != 10 {
+				http.Error(w, "Error 400\n Bad Request,"+string(e), http.StatusNotFound)
 				return
 			}
 		}
@@ -48,7 +58,10 @@ func handlefunc(w http.ResponseWriter, request *http.Request) {
 
 		if err != nil {
 			http.Error(w, "Internal Server error - 500", http.StatusNotFound)
+			return
 		}
+
+
 
 		fileContent := ScanFile(file)
 		arg := strings.Split(text+" ", "\\n")
